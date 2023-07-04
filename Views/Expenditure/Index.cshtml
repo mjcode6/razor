@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@model IEnumerable<Expenditure>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date</th>
+            <th>Prix (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var expenditure in Model)
+        {
+            <tr>
+                <td>@expenditure.Name</td>
+                <td>@expenditure.Date.ToShortDateString()</td>
+                <td>@expenditure.Price</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">Total</td>
+            <td>@Model.Sum(e => e.Price)</td>
+        </tr>
+    </tfoot>
+</table>
